@@ -132,6 +132,7 @@ export default class GameScene extends Phaser.Scene {
     this.plateSpeed = 420;
     this.plateHalfWidth = plateWidth / 2;
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.setupPointerControls();
 
     this.fallSpeed = 180;
     this.ingredients = this.add.group();
@@ -154,7 +155,11 @@ export default class GameScene extends Phaser.Scene {
       velocityX += this.plateSpeed;
     }
 
-    this.plate.x += velocityX * dt;
+    if (this.platePointer?.isDown && !this.cursors.left.isDown && !this.cursors.right.isDown) {
+      this.plate.x = this.platePointer.x;
+    } else {
+      this.plate.x += velocityX * dt;
+    }
 
     const minX = this.plateHalfWidth;
     const maxX = this.scale.width - this.plateHalfWidth;
@@ -164,6 +169,30 @@ export default class GameScene extends Phaser.Scene {
 
     this.updateHazards(dt);
     if (!this.gameOver) this.updateIngredients(dt);
+  }
+
+  setupPointerControls() {
+    this.platePointer = null;
+    const down = (pointer, currentlyOver) => {
+      if (!this.gameOver && !this.platePointer && currentlyOver.length === 0) {
+        this.platePointer = pointer;
+      }
+    };
+    const release = (pointer) => {
+      if (pointer === this.platePointer) this.platePointer = null;
+    };
+    const leave = () => { this.platePointer = null; };
+    this.input.on("pointerdown", down);
+    this.input.on("pointerup", release);
+    this.input.on("pointerupoutside", release);
+    this.input.on("gameout", leave);
+    this.events.once("shutdown", () => {
+      this.input.off("pointerdown", down);
+      this.input.off("pointerup", release);
+      this.input.off("pointerupoutside", release);
+      this.input.off("gameout", leave);
+      this.platePointer = null;
+    });
   }
 
   scheduleNextIngredient() {
