@@ -1,5 +1,13 @@
 # portfolio-game-2
 AME 294 Portfolio Game 2
+
+**Course:** AME 294: Games and AI — Creating Games with Artificial Intelligence
+**Assignment:** Portfolio Game 2 — Vibe-Coded Browser Game
+**Student Name:** Koki Kamijima
+**Project Title:** Catch Sushi
+**Repository URL:** https://kkoki0808.github.io/portfolio-game-2/
+**Itch.io URL (Optional Bonus):** 
+
 # Sushi Catch 🍣
 
 **Sushi Catch** is a 2D browser game created for **AME 294: Games and AI — Portfolio Game 2**.
