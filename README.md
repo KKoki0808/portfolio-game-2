@@ -7,6 +7,7 @@ AME 294 Portfolio Game 2
 **Project Title:** Catch Sushi
 **Repository URL:** https://kkoki0808.github.io/portfolio-game-2/
 **Itch.io URL (Optional Bonus):** 
+Presentation URL:https://docs.google.com/presentation/d/1jBcWFmnUZN9gZdVm0UtxAPEMH4fFFZ50/edit?usp=sharing
 
 # Sushi Catch 🍣
 
